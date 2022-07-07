@@ -8,10 +8,11 @@
     <jsp:include page="common/header.jsp"/>
     <!-- 수정 예정 
     제어문 사용해서 가격이 15000원 이상인 것들만 띄우기, 
-    이미지, 책이름, 저자 정도만 나오게 하기 
+    ISBN값에 맞춰서 이미지가 출력될 수 있게 하기, 표 글씨 중앙정렬, 화면 크기에 맞춰서 크기가 조절될 수 있게 하기
     교보 문고처럼 세로로 나올 수 있게 하기-->
-    <!-- 참고 링크 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=fourleaf0311&logNo=140114369236
-         참고 링크2 : https://earth-ing.tistory.com/20 -->
+    <!-- 참고 링크 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=fourleaf0311&logNo=140114369236 테이블에 DB값 받아서 출력하기
+         참고 링크2 : https://earth-ing.tistory.com/20 DB 연동
+	 참고 링크3 : https://rsorry.tistory.com/169  테이블 안에 이미지 넣기-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,17 +21,14 @@
 </head>
 <body>
  <blockquote>
- 5팀 메인 화면
+ <h1>이번 주 인기 서적</h1>
  <table width = "100%" border="3">
  <tr>
- <td>책표지</td>
- <td>책이름</td>
- <td>책분류</td>
- <td>저자</td>
-  <td>출판사</td>
-   <td>출판일</td>
- <td>가격</td>
-  <td>책 소개</td>
+ <th>책표지</th>
+ <th>책이름</th>
+ <th>책분류</th>
+ <th>저자</th>
+ <th>상세정보</th>
  </tr>
  <%
  Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -57,14 +55,11 @@
     {
 %>
 <tr>
-    <td><%= rs.getString("ISBN") %></td>
+    <td><img src="images/불편한 편의점.PNG" width="100", height="50" alt="불편한 편의점"></td>
     <td><%= rs.getString("BOOKNAME") %></td>
     <td><%= rs.getString("BOOKTYPE") %></td>
     <td><%= rs.getString("WRITER") %></td>
-    <td><%= rs.getString("PUBLISHER") %></td>
-    <td><%= rs.getString("PUBLICATION") %></td>
-    <td><%= rs.getString("PRICE") %></td>
-    <td><%= rs.getString("DESCRIPTION") %></td>
+    <td><button>상세정보</button></td>
 </tr>
 <%
     }
