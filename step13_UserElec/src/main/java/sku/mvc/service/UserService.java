@@ -3,11 +3,12 @@
 import java.sql.SQLException;
 
 import sku.mvc.dto.UserDTO;
+import sku.mvc.dto.UserIdDTO;
 import sku.mvc.exception.AuthenticationException;
 
 public interface UserService {
 	/**
-	 * �α��� üũ
+	 * 로그인 체크
 	 * */
-   UserDTO loginCheck(UserDTO userDTO)throws SQLException , AuthenticationException;
+   UserIdDTO loginCheck(UserIdDTO userIdDTO)throws SQLException , AuthenticationException;
 }

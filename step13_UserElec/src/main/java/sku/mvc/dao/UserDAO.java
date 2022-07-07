@@ -3,11 +3,12 @@ package sku.mvc.dao;
 import java.sql.SQLException;
 
 import sku.mvc.dto.UserDTO;
+import sku.mvc.dto.UserIdDTO;
 
 public interface UserDAO {
   /**
-   * ∑Œ±◊¿Œ ±‚¥…
+   * Î°úÍ∑∏Ïù∏ Í∏∞Îä•
    * select user_id , pwd, name from users where user_id=? and pwd=?
    * */
-	UserDTO loginCheck(UserDTO userDTO)throws SQLException;
+	UserIdDTO loginCheck(UserIdDTO userIdDTO)throws SQLException;
 }

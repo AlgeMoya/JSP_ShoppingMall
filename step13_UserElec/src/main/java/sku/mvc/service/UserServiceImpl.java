@@ -5,15 +5,16 @@ import java.sql.SQLException;
 import sku.mvc.dao.UserDAO;
 import sku.mvc.dao.UserDAOImpl;
 import sku.mvc.dto.UserDTO;
+import sku.mvc.dto.UserIdDTO;
 import sku.mvc.exception.AuthenticationException;
 
 public class UserServiceImpl implements UserService {
     private UserDAO dao = new UserDAOImpl();
 	@Override
-	public UserDTO loginCheck(UserDTO userDTO) throws SQLException, AuthenticationException {
-       UserDTO dbDTO =  dao.loginCheck(userDTO);
+	public UserIdDTO loginCheck(UserIdDTO userIdDTO) throws SQLException, AuthenticationException {
+       UserIdDTO dbDTO =  dao.loginCheck(userIdDTO);
        if(dbDTO==null) {
-    	   throw new AuthenticationException("¡§∫∏∏¶ ¥ŸΩ√ »Æ¿Œ«ÿ¡÷ººø‰.");
+    	   throw new AuthenticationException("Ï†ïÎ≥¥Î•º Îã§Ïãú ÌôïÏù∏Ìï¥Ï£ºÏÑ∏Ïöî.");
        }
 
 		return dbDTO;

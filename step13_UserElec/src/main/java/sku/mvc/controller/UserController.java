@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sku.mvc.dto.UserDTO;
+import sku.mvc.dto.UserIdDTO;
 import sku.mvc.service.UserService;
 import sku.mvc.service.UserServiceImpl;
 
@@ -22,32 +23,31 @@ public class UserController implements Controller {
 	}
 	
 	/**
-	 * ·Î±×ÀÎ±â´É
+	 * ë¡œê·¸ì¸ê¸°ëŠ¥
 	 * */
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		//³Ñ¾î¿À´Â userId, pwd ¹Ş±â
+		//ë„˜ì–´ì˜¤ëŠ” userId, pwd ë°›ê¸°
 		String userId= request.getParameter("userId");
 		String pwd= request.getParameter("pwd");
 	
-		//¼­ºñ½º È£Ãâ
-		UserDTO dbDTO = userService.loginCheck(new UserDTO(userId, pwd));
+		//ì„œë¹„ìŠ¤ í˜¸ì¶œ
+		UserIdDTO dbDTO = userService.loginCheck(new UserIdDTO(userId, pwd));
 		
-		//¿©±â±îÁö ¿Ô´Ù´Â ÀÌ¾ß±â´Â ·Î±×ÀÎ ¼º°øÇß´Ù!!!
-		//±×°á°ú¸¦ ¹Ş¾Æ¼­ ¼º°øÇßÀ¸¸é  sessionScope¿¡ loginUser , loginName ÀúÀåÇÑ´Ù. 
+		//ì—¬ê¸°ê¹Œì§€ ì™”ë‹¤ëŠ” ì´ì•¼ê¸°ëŠ” ë¡œê·¸ì¸ ì„±ê³µí–ˆë‹¤!!!
+		//ê·¸ê²°ê³¼ë¥¼ ë°›ì•„ì„œ ì„±ê³µí–ˆìœ¼ë©´  sessionScopeì— loginUser ì €ì¥í•œë‹¤. 
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", dbDTO); //${loginUser.userId}
-		session.setAttribute("loginName", dbDTO.getName());
 		
-		//index.jspÀÌµ¿  - > redirect
+		//index.jspì´ë™  - > redirect
 		return new ModelAndView("index.jsp", true);
 	}
 	
 	/**
-	 * ·Î±×¾Æ¿ô±â´É
+	 * ë¡œê·¸ì•„ì›ƒê¸°ëŠ¥
 	 * */
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//¸ğµç ¼¼¼ÇÀÇ Á¤º¸¸¦ »èÁ¦
+		//ëª¨ë“  ì„¸ì…˜ì˜ ì •ë³´ë¥¼ ì‚­ì œ
 		HttpSession session =request.getSession();
 		session.invalidate();
 		

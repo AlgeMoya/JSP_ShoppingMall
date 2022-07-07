@@ -6,27 +6,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import sku.mvc.dto.UserDTO;
+import sku.mvc.dto.UserIdDTO;
 import sku.mvc.util.DbUtil;
 
 public class UserDAOImpl implements UserDAO {
 
 	@Override
-	public UserDTO loginCheck(UserDTO userDTO) throws SQLException {
+	public UserIdDTO loginCheck(UserIdDTO userIdDTO) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps =null;
 		ResultSet rs =null;
 		
-		String sql="select * from users where user_id=? and pwd=?";
-		UserDTO dbDTO=null;
+		String sql="select * from usertable where userid=? and password=?";
+		UserIdDTO dbDTO=null;
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, userDTO.getUserId());
-			ps.setString(2, userDTO.getPwd());
+			ps.setString(1, userIdDTO.getUserId());
+			ps.setString(2, userIdDTO.getPassWord());
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				dbDTO = new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3));
+				dbDTO = new UserIdDTO(rs.getString(1), rs.getString(2));
 			}
 			
 		}finally {

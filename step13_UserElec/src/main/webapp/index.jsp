@@ -5,6 +5,7 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> <!-- c 외의 다른 것으로 할 수는 있지만 권장하지 않는다. -->
     <jsp:include page="common/header.jsp"/>
     <!-- 수정 예정 
     제어문 사용해서 가격이 15000원 이상인 것들만 띄우기, 
@@ -30,50 +31,17 @@
  <th>저자</th>
  <th>상세정보</th>
  </tr>
- <%
- Class.forName("oracle.jdbc.driver.OracleDriver");
  
- Connection conn=null;
- Statement stmt=null;
- ResultSet rs=null;
- 
- try{
-	 String jdbcDriver="jdbc:oracle:thin:@localhost:1521:XE";
-	 String dbUser = "user1";//db 아이디
-	 String dbPass = "1234"; //db 비번
-	 
-	 String query ="select * from BOOKTABLE";
-	conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
-	// 3. Statement 생성
-    stmt = conn.createStatement();
-
-    // 4. 쿼리 실행
-    rs = stmt.executeQuery(query);
-
-    // 5. 쿼리 실행 결과 출력
-    while(rs.next())
-    {
-%>
-<tr>
-    <td><img src="images/불편한 편의점.PNG" width="100", height="50" alt="불편한 편의점"></td>
-    <td><%= rs.getString("BOOKNAME") %></td>
-    <td><%= rs.getString("BOOKTYPE") %></td>
-    <td><%= rs.getString("WRITER") %></td>
-    <td><button>상세정보</button></td>
-</tr>
-<%
-    }
-}catch(SQLException ex){
-    out.println(ex.getMessage());
-    ex.printStackTrace();
-}finally{
-    // 6. 사용한 Statement 종료
-    if(rs != null) try { rs.close(); } catch(SQLException ex) {}
-    if(stmt != null) try { stmt.close(); } catch(SQLException ex) {}
-
-    // 7. 커넥션 종료
-    if(conn != null) try { conn.close(); } catch(SQLException ex) {}
-}%>
+  <c:forEach items="${applicationScope.bestseller}" var="booklist" >
+  	<tr>
+    	<td><img src="images/${booklist.isbn}.PNG" width="100", height="50" alt="불편한 편의점"></td>
+    	<td>${booklist.bookName}</td>
+    	<td>${booklist.bookType}</td>
+   		<td>${booklist.wirter}</td>
+	    <td><button>상세정보</button></td>
+	</tr>
+     <!-- <input type="radio" name="nation" value="${booklist.isbn}" /> ${booklist.bookName}  -->
+  </c:forEach>
 </table>
   
 </blockquote>
