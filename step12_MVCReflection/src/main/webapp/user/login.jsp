@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-    <jsp:include page="common/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Team5 Book Mall</title>
 </head>
 <body>
-<blockquote> 
-<h1>테스트 테스트 index.jsp</h1>
-</blockquote>
+    <div class="main">
+        <h1 class="logo">Login</h1>
+        <div class="container">
+            <input type="text" placeholder="ID" id="id" class="account">
+            <input type="password" placeholder="Password" id="password" class="account">
+            <button id="login" class="account">login</button>
+            <p id="alert" class="account"> </p>
+        </div>
+    </div>   
+    <script src="script.js"></script>
 </body>
 </html>
- <jsp:include page="common/footer.jsp"/>
