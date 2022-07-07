@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
+    <jsp:include page="common/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<h1>user/login.jsp 입니다. : ${message}</h1>
-
-<a href="${path}/user/update.jsp">이동하기</a>
-
+<blockquote> 
+<h1>테스트 테스트 index.jsp</h1>
+</blockquote>
 </body>
 </html>
+ <jsp:include page="common/footer.jsp"/>
