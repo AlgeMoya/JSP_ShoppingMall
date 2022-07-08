@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+
 </head>
 <body>
 <h1> ${booklist.bookname} 책 소개 페이지</h1>
@@ -22,7 +24,13 @@
 <td>가격</td>
 </tr>
 <tr>
-<td><button>구매하기</button></td>
+<td><button id ="btn" onclick="Buy();">구매하기</button>
+<script>
+function Buy(){
+	alert("구매되셨습니다");
+}
+</script>
+</td>
 </tr>
 </table>
 
@@ -34,3 +42,4 @@
 </table>
 </body>
 </html>
+ <jsp:include page="../common/footer.jsp"/>

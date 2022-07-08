@@ -73,14 +73,14 @@ float:right;}
 		<li class="book"><a href="#">책 분류</a>
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">총류</a></li>
-				<li><a href="${pageContext.request.contextPath}/">철학</a></li>
-				<li><a href="${pageContext.request.contextPath}/">종교</a></li>
-				<li><a href="${pageContext.request.contextPath}/">사회과학</a></li>
-				<li><a href="${pageContext.request.contextPath}/">자연과학</a></li>
-				<li><a href="${pageContext.request.contextPath}/">기술과학</a></li>
-				<li><a href="${pageContext.request.contextPath}/">예술</a></li>
-				<li><a href="${pageContext.request.contextPath}/">문학</a></li>
-				<li><a href="${pageContext.request.contextPath}/">역사</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">철학</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">종교</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">사회과학</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">자연과학</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">기술과학</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">예술</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">문학</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">역사</a></li>
 			</ul>
 		</li>
 
@@ -102,7 +102,6 @@ float:right;}
       <li><a href="${pageContext.request.contextPath}/user/login.jsp">로그인</a></li>
       <li><a href="${pageContext.request.contextPath}/user/registration.jsp">회원가입</a></li>
       <!-- dispatcher 서블릿으로 들어갈 이유가 없는데도 들어가는 이유는 로그인 -->
-      <li><a href="${pageContext.request.contextPath}/front">마이페이지</a></li>
      </ul>
      </c:otherwise>
      </c:choose>
