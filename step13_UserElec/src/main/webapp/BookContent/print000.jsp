@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,8 @@
     	<td>${booklist.bookName}</td>
     	<td>${booklist.bookType}</td>
    		<td>${booklist.wirter}</td>
-	    <td><button>상세정보</button></td>
+	    <td><td align=center><button style="background-color : #58ACFA">
+	    <a href="bookContent.jsp">상세정보</a></button></td></td>
 	</tr>
      <!-- <input type="radio" name="nation" value="${booklist.isbn}" /> ${booklist.bookName}  -->
   </c:forEach>
@@ -34,3 +36,4 @@
 </blockquote>
 </body>
 </html>
+ <jsp:include page="../common/footer.jsp"/>

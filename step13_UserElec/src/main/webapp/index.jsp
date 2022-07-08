@@ -20,11 +20,11 @@
 <meta charset="UTF-8">
 <title>Team5</title>
 </head>
-<body>
 
+<body>
  <blockquote>
  <h1>이번 주 인기 서적</h1>
- <table width = "100%" border="3">
+ <table style ="text-align:center"width = "100%" border="3">
  <tr>
  <th>책표지</th>
  <th>책이름</th>
@@ -35,11 +35,12 @@
  
   <c:forEach items="${applicationScope.bestseller}" var="booklist" >
   	<tr>
-    	<td><img src="${path}/images/${booklist.isbn}.PNG" width="100", height="50"></td>
-    	<td>${booklist.bookName}</td>
-    	<td>${booklist.bookType}</td>
-   		<td>${booklist.wirter}</td>
-	    <td><button>상세정보</button></td>
+    	<td align=center><img src="${path}/images/${booklist.isbn}.PNG" width="100", height="50"></td>
+    	<td align=center>${booklist.bookName}</td>
+    	<td align=center>${booklist.bookType}</td>
+   		<td align=center>${booklist.wirter}</td>
+	    <td align=center><button style="background-color : #58ACFA">
+	    <a href="${pageContext.request.contextPath}/BookContent/bookContent.jsp">상세정보</a></button></td>
 	</tr>
      <!-- <input type="radio" name="nation" value="${booklist.isbn}" /> ${booklist.bookName}  -->
   </c:forEach>
