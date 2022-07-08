@@ -36,6 +36,32 @@ public class UserDAOImpl implements UserDAO {
 		return dbDTO;
 	}
 	
+	public int insert(UserIdDTO userIdDTO) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement ps = null;
+		// ResultSet rs = null; // Select 전용으로 필요 없다
+		String sql="INSERT INTO USERTABLE VALUES (?, ?)";
+		int result = 0;
+
+		// ORM 프레임워크를 쓰면 한 줄로 끝난다.
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			// 물음표의 개수만큼 set 해줘야 한다.
+			ps.setString(1, userIdDTO.getUserId());
+			ps.setString(2, userIdDTO.getPassWord());
+			
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
+	}
+	
 
 	
 
