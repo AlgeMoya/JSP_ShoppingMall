@@ -3,15 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../common/header.jsp"/>
 
+<style>
+#login{
+z-index:150;}
+</style>
 
 <c:choose>
 	<c:when test="${empty loginUser}">
-		<form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/front">
+		<form id = login class="form-horizontal" method="post" action="${pageContext.request.contextPath}/front">
 			<input type="hidden" name="key" value = "user" /> <!-- Controller를 찾는 정보 -->
 			<input type="hidden" name="methodName" value = "login" />  <!-- 메소드이름 -->
 			<fieldset>
 				<legend>Login</legend>
-				<div class="form-group">
+				<div class="form-group" id="login">
 					<label for="userId" class="col-lg-2 control-label">User Id</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="userId" name="userId"

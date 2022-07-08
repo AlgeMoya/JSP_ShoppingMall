@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class SessionCheckFilter
  */
-@WebFilter("/front")
+//@WebFilter("/front")
 public class SessionCheckFilter  implements Filter {
     
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

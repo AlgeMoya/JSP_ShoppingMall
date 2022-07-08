@@ -40,6 +40,8 @@ text-align:center;
 float : left;
 width: 140px;
 position:relative;
+z-index: 300;
+
 }
 #menu > ul>li>ul{
 width: 140px;
@@ -60,8 +62,7 @@ background : #9999FF;}
 .login {
 text-align:center;
 float:right;}
-#menu li.login{float:right;}
-.dep{position:relative; z-index:10;}
+
 </style>
 
 </head>
