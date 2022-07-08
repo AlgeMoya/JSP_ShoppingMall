@@ -7,36 +7,36 @@ import sku.mvc.dto.Electronics;
 
 public interface ElectronicsService{
 	/**
-	 * ElectronicsDAOImplÀÇ ¸ğµç·¹ÄÚµå °Ë»öÇÏ´Â ¸Ş¼Òµå È£Ãâ
+	 * ElectronicsDAOImplì˜ ëª¨ë“ ë ˆì½”ë“œ ê²€ìƒ‰í•˜ëŠ” ë©”ì†Œë“œ í˜¸ì¶œ
 	 * */
     List<Electronics> selectAll() throws SQLException;
     
     /**
-	 * pagingÃ³¸®
+	 * pagingì²˜ë¦¬
 	 * */
     List<Electronics> selectAll(int pageNo) throws SQLException;
 	  
 	  /**
-	   * ElectronicsDAOImplÀÇ ·¹ÄÚµå »ğÀÔÇÏ´Â ¸Ş¼Òµå È£Ãâ
+	   * ElectronicsDAOImplì˜ ë ˆì½”ë“œ ì‚½ì…í•˜ëŠ” ë©”ì†Œë“œ í˜¸ì¶œ
 	   * */
 	  void insert(Electronics electronics) throws SQLException;
 	 
 	  
 	  /**
-	   * ElectronicsDAOImplÀÇ ¸ğµ¨¹øÈ£¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå °Ë»öÇÏ´Â ¸Ş¼Òµå È£Ãâ
-	   * @param : boolean flag - Á¶È¸¼ö Áõ°¡ ¿©ºÎ¸¦ ÆÇº°ÇÏ´Â ¸Å°³º¯¼öÀÓ(trueÀÌ¸é Á¶È¸¼öÁõ°¡ / falseÀÌ¸é Á¶È¸¼ö Áõ°¡ ¾ÈÇÔ)
+	   * ElectronicsDAOImplì˜ ëª¨ë¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ê²€ìƒ‰í•˜ëŠ” ë©”ì†Œë“œ í˜¸ì¶œ
+	   * @param : boolean flag - ì¡°íšŒìˆ˜ ì¦ê°€ ì—¬ë¶€ë¥¼ íŒë³„í•˜ëŠ” ë§¤ê°œë³€ìˆ˜ì„(trueì´ë©´ ì¡°íšŒìˆ˜ì¦ê°€ / falseì´ë©´ ì¡°íšŒìˆ˜ ì¦ê°€ ì•ˆí•¨)
 	   * */
 	  Electronics selectByModelnum(String modelNum, boolean flag) throws SQLException;
 		 
 		 
 	 /**
-	   * ElectronicsDAOImplÀÇ ¸ğµ¨¹øÈ£¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå »èÁ¦ ¸Ş¼Òµå È£Ãâ
+	   * ElectronicsDAOImplì˜ ëª¨ë¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ì‚­ì œ ë©”ì†Œë“œ í˜¸ì¶œ
 	   * */
 	    void delete(String modelNum, String password , String path) throws SQLException;
 	  
 	  
 	  /**
-	   * ElectronicsDAOImplÀÇ ¸ğµ¨¹øÈ£¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå ¼öÁ¤  ¸Ş¼Òµå È£Ãâ
+	   * ElectronicsDAOImplì˜ ëª¨ë¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ìˆ˜ì •  ë©”ì†Œë“œ í˜¸ì¶œ
 	   * */
 	   void update(Electronics electronics) throws SQLException;
 	  

@@ -27,25 +27,25 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	@Override
 	public void insert(Electronics electronics) throws SQLException {
 		int result = elecDao.insert(electronics);
-		if(result==0)throw new SQLException("µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+		if(result==0)throw new SQLException("ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 		
 	}
 
 	@Override
 	public Electronics selectByModelnum(String modelNum, boolean flag) throws SQLException {
-		if(flag) {//Á¶È¸¼öÁõ°¡
-			if( elecDao.increamentByReadnum(modelNum)==0) { //Á¶È¸¼öÁõ°¡ ½ÇÆĞ!!
-			   throw new SQLException("Á¶È¸¼ö Áõ°¡¿¡ ´ëÇÑ ¿À·ù°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù.");	
+		if(flag) {//ì¡°íšŒìˆ˜ì¦ê°€
+			if( elecDao.increamentByReadnum(modelNum)==0) { //ì¡°íšŒìˆ˜ì¦ê°€ ì‹¤íŒ¨!!
+			   throw new SQLException("ì¡°íšŒìˆ˜ ì¦ê°€ì— ëŒ€í•œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤.");	
 			}
 		}
 		
 		Electronics elec = elecDao.selectByModelNum(modelNum);
 		if(elec==null) {
-			throw new SQLException("»ó¼¼º¸±â¿¡ ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù..");
+			throw new SQLException("ìƒì„¸ë³´ê¸°ì— ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤..");
 		}
 		
-		//´ñ±ÛÁ¤º¸ °¡Á®¿À±â 
-		elec.setRepliesList( elecDao.selectRepliesByModelNum(modelNum) ); //ºä¿¡¼­ read.jsp¿¡¼­ ${elec.repliesList}
+		//ëŒ“ê¸€ì •ë³´ ê°€ì ¸ì˜¤ê¸° 
+		elec.setRepliesList( elecDao.selectRepliesByModelNum(modelNum) ); //ë·°ì—ì„œ read.jspì—ì„œ ${elec.repliesList}
 		
 		return elec;
 	}
@@ -55,37 +55,36 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 
 	@Override
 	public void delete(String modelNum, String password, String path) throws SQLException {
-         //ºñ¹Ğ¹øÈ£ ÀÏÄ¡ ¿©ºÎ Ã¼Å©
+         //ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ ì—¬ë¶€ ì²´í¬
 		Electronics elecDB =  elecDao.selectByModelNum(modelNum);
 		if(!elecDB.getPassword().equals(password)) {
-			throw new SQLException("ºñ¹Ğ¹øÈ£ ¿À·ù·Î »èÁ¦ ÇÒ¼ö ¾ø½À´Ï´Ù.");
+			throw new SQLException("ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜ë¡œ ì‚­ì œ í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 		if(elecDao.delete(modelNum, password)==0) {
-			throw new SQLException(modelNum+"°Ô½Ã¹°À» »èÁ¦ÇÒ¼ö ¾ø½À´Ï´Ù.");
+			throw new SQLException(modelNum+"ê²Œì‹œë¬¼ì„ ì‚­ì œí• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 
-		//°Ô½Ã¹°»èÁ¦°¡ µÇ¾ú°í »èÁ¦µÈ °Ô½Ã¹°ÀÌ saveÆú´õ¿¡ ÆÄÀÏÀ» ÀúÀåÇŞ¾ú´Ù¸é saveÆú´õ¿¡¼­ ÆÄÀÏ »èÁ¦ÇØÁØ´Ù.
+		//ê²Œì‹œë¬¼ì‚­ì œê°€ ë˜ì—ˆê³  ì‚­ì œëœ ê²Œì‹œë¬¼ì´ saveí´ë”ì— íŒŒì¼ì„ ì €ì¥í–‡ì—ˆë‹¤ë©´ saveí´ë”ì—ì„œ íŒŒì¼ ì‚­ì œí•´ì¤€ë‹¤.
 	   if(elecDB.getFname()!=null) {
-		   System.out.println("¿©±â¿À´Ï? path = " + path +" , elecDB.getFname() = " + elecDB.getFname());
-		   new File(path+"/" + elecDB.getFname()).delete();//ÆÄÀÏ»èÁ¦ 
+		   System.out.println("ì—¬ê¸°ì˜¤ë‹ˆ? path = " + path +" , elecDB.getFname() = " + elecDB.getFname());
+		   new File(path+"/" + elecDB.getFname()).delete();//íŒŒì¼ì‚­ì œ 
 	   }
-		
 	}
 	
 
 	@Override
 	public void update(Electronics electronics) throws SQLException {
-		//ºñ¹Ğ¹øÈ£ °ËÁõ(ÀÎ¼ö·Î Àü´ŞµÈ ºñ¹ø°ú DB¿¡ ÀúÀåµÈ ºñ¹ø ºñ±³ÇÑ´Ù)
+		//ë¹„ë°€ë²ˆí˜¸ ê²€ì¦(ì¸ìˆ˜ë¡œ ì „ë‹¬ëœ ë¹„ë²ˆê³¼ DBì— ì €ì¥ëœ ë¹„ë²ˆ ë¹„êµí•œë‹¤)
 		Electronics dbElec = elecDao.selectByModelNum(electronics.getModelNum());
 		if(dbElec==null){
-			throw new SQLException(electronics.getModelNum()+" ¿À·ù·Î ¼öÁ¤ ÇÒ¼ö ¾ø½À´Ï´Ù.");
+			throw new SQLException(electronics.getModelNum()+" ì˜¤ë¥˜ë¡œ ìˆ˜ì • í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}else if(!dbElec.getPassword().equals(electronics.getPassword()) ) {
-			throw new SQLException("ºñ¹Ğ¹øÈ£ ¿À·ù·Î ¼öÁ¤ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			throw new SQLException("ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜ë¡œ ìˆ˜ì • í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 		if(elecDao.update(electronics) ==0) {
-			throw new SQLException("¼öÁ¤µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+			throw new SQLException("ìˆ˜ì •ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 		}
 		
 	}

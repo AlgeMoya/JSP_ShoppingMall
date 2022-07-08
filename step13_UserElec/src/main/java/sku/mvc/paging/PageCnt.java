@@ -1,8 +1,8 @@
 package sku.mvc.paging;
 
 public class PageCnt {
-	private static int pageCnt; //ÃÑÆäÀÌÁö ¼öMath.ceil(ÀüÃ¼·¹ÄÚµå¼ö /pagesize) 
-	public static  int pagesize = 5;// ÇÑ ÆäÀÌÁö ´ç 5°³ Ãâ·Â¹°
+	private static int pageCnt; //ì´í˜ì´ì§€ ìˆ˜Math.ceil(ì „ì²´ë ˆì½”ë“œìˆ˜ /pagesize) 
+	public static  int pagesize = 5;// í•œ í˜ì´ì§€ ë‹¹ 5ê°œ ì¶œë ¥ë¬¼
 	public static int pageNo=1;
 	
 	public  int blockcount=2; //[] [] [] ....

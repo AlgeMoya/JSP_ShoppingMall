@@ -1,11 +1,11 @@
 package sku.mvc.controller;
 /**
- *  °¢°¢ÀÇ ControllerÀÇ ±¸ÇöÃ¼µéÀÌ ½ÇÇàµÈ ÈÄ ÀÌµ¿ÇØ¾ßÇÏ´Â 
- *   ÆäÀÌÁöÁ¤º¸¿Í ÀÌµ¿¹æ½Ä¿¡ ´ëÇÑ ¼Ó¼ºÀ» °ü¸®ÇÒ °´Ã¼ÀÌ´Ù.
+ *  ê°ê°ì˜ Controllerì˜ êµ¬í˜„ì²´ë“¤ì´ ì‹¤í–‰ëœ í›„ ì´ë™í•´ì•¼í•˜ëŠ” 
+ *   í˜ì´ì§€ì •ë³´ì™€ ì´ë™ë°©ì‹ì— ëŒ€í•œ ì†ì„±ì„ ê´€ë¦¬í•  ê°ì²´ì´ë‹¤.
  * */
 public class ModelAndView {
-   private String viewName; //ºäÀÌ¸§
-   private boolean isRedirect; //ÀÌµ¿¹æ½Ä(trueÀÌ¸é redirect, falseÀÌ¸é forward)
+   private String viewName; //ë·°ì´ë¦„
+   private boolean isRedirect; //ì´ë™ë°©ì‹(trueì´ë©´ redirect, falseì´ë©´ forward)
    
    public ModelAndView() {}
    public ModelAndView(String viewName) {

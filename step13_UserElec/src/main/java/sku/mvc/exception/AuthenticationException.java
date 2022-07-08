@@ -1,9 +1,9 @@
 package sku.mvc.exception;
 
 /**
- * ·Î±×ÀÎÇÒ¶§ ÀÎÁõ¿¡ ½ÇÆĞÇÏ¸é ¹ß»ıÇÏ´Â ¿¹¿ÜÁ¾·ù
+ * ë¡œê·¸ì¸í• ë•Œ ì¸ì¦ì— ì‹¤íŒ¨í•˜ë©´ ë°œìƒí•˜ëŠ” ì˜ˆì™¸ì¢…ë¥˜
  * */
-public class AuthenticationException extends Exception { //Ã¼Å©¿¹¿Ü!!!
+public class AuthenticationException extends Exception { //ì²´í¬ì˜ˆì™¸!!!
 	public AuthenticationException() {}
 	public AuthenticationException(String message) {
 		super(message);

@@ -11,4 +11,6 @@ public interface UserDAO {
    * select user_id , pwd, name from users where user_id=? and pwd=?
    * */
 	UserIdDTO loginCheck(UserIdDTO userIdDTO)throws SQLException;
+	
+	int insert(UserIdDTO userIdDTO)throws SQLException;
 }

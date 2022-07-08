@@ -9,49 +9,49 @@ import sku.mvc.dto.Reply;
 
 public interface ElectronicsDAO {
 	 /**
-	  * ·¹ÄÚµå ÀüÃ¼ °Ë»ö
+	  * ë ˆì½”ë“œ ì „ì²´ ê²€ìƒ‰
 	  * */
 	  List<Electronics> selectAll() throws SQLException;
 	  
 	  /**
-		  * ·¹ÄÚµå ÀüÃ¼ °Ë»ö(ÆäÀÌÁöÃ³¸®)
+		  * ë ˆì½”ë“œ ì „ì²´ ê²€ìƒ‰(í˜ì´ì§€ì²˜ë¦¬)
 		  * */
 	   List<Electronics> getBoardList(int pageNo) throws SQLException;
 	  
 	   
 	  /**
-	   * ¸ğµ¨¹øÈ£¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå °Ë»ö
+	   * ëª¨ë¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ê²€ìƒ‰
 	   * */
 	  Electronics selectByModelNum(String modelNum) throws SQLException;
 	  
 	  /**
-	   * Á¶È¸¼ö¸¦ Áõ°¡ÇÏ´Â ±â´É
+	   * ì¡°íšŒìˆ˜ë¥¼ ì¦ê°€í•˜ëŠ” ê¸°ëŠ¥
 	   * update Electronics set readnum = readnum + 1 where model_num=?
 	   * */
 	  int increamentByReadnum(String modelNum) throws SQLException;
 	  
 	  
 	/**
-	 * ·¹ÄÚµå »ğÀÔ
-	 * @return : 1-»ğÀÔ¼º°ø , 0 - »ğÀÔ½ÇÆĞ
+	 * ë ˆì½”ë“œ ì‚½ì…
+	 * @return : 1-ì‚½ì…ì„±ê³µ , 0 - ì‚½ì…ì‹¤íŒ¨
 	 * */
 	  int insert(Electronics electronics) throws SQLException;
 	  
 	  /**
-	   * ¸ğµ¨¹øÈ£¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå »èÁ¦
-	   * @return : 1-»èÁ¦¼º°ø , 0 - »èÁ¦½ÇÆĞ
+	   * ëª¨ë¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ì‚­ì œ
+	   * @return : 1-ì‚­ì œì„±ê³µ , 0 - ì‚­ì œì‹¤íŒ¨
 	   * */
 	  int delete(String modelNum, String password) throws SQLException;
 	  
 	   /**
-	    * ¸ğµ¨¹øÈ£¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå ¼öÁ¤
-	    * @return : 1-¼öÁ¤¼º°ø , 0 - ¼öÁ¤½ÇÆĞ
+	    * ëª¨ë¸ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ìˆ˜ì •
+	    * @return : 1-ìˆ˜ì •ì„±ê³µ , 0 - ìˆ˜ì •ì‹¤íŒ¨
 	    * */
 	  int update(Electronics electronics) throws SQLException;
 	  
 	  
 	  /**
-	   * ÀüÀÚÁ¦Ç°¿¡ ÇØ´çÇÏ´Â ´ñ±ÛÁ¤º¸°¡Á®¿À±â
+	   * ì „ìì œí’ˆì— í•´ë‹¹í•˜ëŠ” ëŒ“ê¸€ì •ë³´ê°€ì ¸ì˜¤ê¸°
 	   * */
 	  List<Reply> selectRepliesByModelNum(String modelNum) throws SQLException;
 }

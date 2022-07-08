@@ -25,15 +25,15 @@ public class ElectronicsController implements Controller {
 	}
 	
 	/**
-	 *  ÀüÃ¼°Ë»öÇÏ±â 
+	 *  ì „ì²´ê²€ìƒ‰í•˜ê¸° 
 	 * */
 	
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response) throws Exception{
-	    //¼­ºñ½ºÈ£Ãâ 
+	    //ì„œë¹„ìŠ¤í˜¸ì¶œ 
 		/*List<Electronics> elecList = elecService.selectAll();*/
 		
-		///pagingÃ³¸®ÇÏ±â //////////////////////////////////////
-		String pageNo = request.getParameter("pageNo");//ÇöÀçÆäÀÌÁö¹øÈ£ 
+		///pagingì²˜ë¦¬í•˜ê¸° //////////////////////////////////////
+		String pageNo = request.getParameter("pageNo");//í˜„ì¬í˜ì´ì§€ë²ˆí˜¸ 
 		if(pageNo==null || pageNo.equals("")) {
 			pageNo="1";
 		}
@@ -42,18 +42,18 @@ public class ElectronicsController implements Controller {
 		
 		
 	    request.setAttribute("list", elecList);
-	    request.setAttribute("pageNo", pageNo); //ºä¿¡¼­ »ç¿ëÇÏ±â À§ÇØ¼­ ${pageNo}
+	    request.setAttribute("pageNo", pageNo); //ë·°ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ ${pageNo}
 	    
 		return new ModelAndView("elec/list.jsp");
 	}
 	
 	/**
-	 * µî·ÏÇÏ±â
+	 * ë“±ë¡í•˜ê¸°
 	 * */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
-		//Æû¿¡¼­ enctype="multipart/form-data" ¼³Á¤µÇ¾î ÀÖ±â¶§¹®¿¡ 
-		//request·Î´Â ¾ÈµÇ°í MultipartRequest°´Ã¼¸¦ ÀÌ¿ëÇÑ´Ù.
+		//í¼ì—ì„œ enctype="multipart/form-data" ì„¤ì •ë˜ì–´ ìˆê¸°ë•Œë¬¸ì— 
+		//requestë¡œëŠ” ì•ˆë˜ê³  MultipartRequestê°ì²´ë¥¼ ì´ìš©í•œë‹¤.
 		String saveDir= request.getServletContext().getRealPath("/save");
 		//String saveDir="C:\\Edu\\log";
 		int maxSize =1024*1024*100;//100M
@@ -63,7 +63,7 @@ public class ElectronicsController implements Controller {
 			new MultipartRequest(request, saveDir,maxSize,encoding , new DefaultFileRenamePolicy());
 		
 		
-		//Àü¼ÛµÈ µ¥ÀÌÅÍ ¹Ş±â 
+		//ì „ì†¡ëœ ë°ì´í„° ë°›ê¸° 
 		String modelNum = m.getParameter("model_num"); 
 		String modelName = m.getParameter("model_name"); 
 		String price = m.getParameter("price"); 
@@ -72,12 +72,12 @@ public class ElectronicsController implements Controller {
 		
 		Electronics elec = new Electronics(modelNum, modelName, Integer.parseInt(price), description, password);
 		
-		//ÆÄÀÏÃ·ºÎ°¡µÇ¾ú´Ù¸é...
+		//íŒŒì¼ì²¨ë¶€ê°€ë˜ì—ˆë‹¤ë©´...
 		if(m.getFilesystemName("file") != null) {
-			//ÆÄÀÏÀÌ¸§ ÀúÀå
+			//íŒŒì¼ì´ë¦„ ì €ì¥
 			elec. setFname(m.getFilesystemName("file"));
 			
-			//ÆÄÀÏÅ©±â ÀúÀå
+			//íŒŒì¼í¬ê¸° ì €ì¥
 			elec.setFsize((int)m.getFile("file").length());
 		}
 		
@@ -88,13 +88,13 @@ public class ElectronicsController implements Controller {
 	}
 	
 	/**
-	 * »ó¼¼º¸±â
+	 * ìƒì„¸ë³´ê¸°
 	 * */
 	public ModelAndView selectByModelNum(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String modelNum = request.getParameter("modelNum");
 		String pageNo = request.getParameter("pageNo");
 		
-		 Electronics electronics = elecService.selectByModelnum(modelNum, true);//true´Â Á¶È¸¼ö Áõ°¡½ÃÅ²´Ù.!!
+		 Electronics electronics = elecService.selectByModelnum(modelNum, true);//trueëŠ” ì¡°íšŒìˆ˜ ì¦ê°€ì‹œí‚¨ë‹¤.!!
 		 request.setAttribute("elec", electronics);
 		 request.setAttribute("pageNo", pageNo);
 		 
@@ -102,11 +102,11 @@ public class ElectronicsController implements Controller {
 	}
 	
 	/**
-	 * ¼öÁ¤Æû
+	 * ìˆ˜ì •í¼
 	 * */
 	public ModelAndView updateForm(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		  String modelNum = request.getParameter("modelNum");
-		 Electronics elec = elecService.selectByModelnum(modelNum, false);//false´Â Á¶È¸¼ö Áõ°¡½ÃÅ°Áö ¾Ê´Â´Ù.
+		 Electronics elec = elecService.selectByModelnum(modelNum, false);//falseëŠ” ì¡°íšŒìˆ˜ ì¦ê°€ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
 		request.setAttribute("elec", elec);
 		
 		
@@ -114,7 +114,7 @@ public class ElectronicsController implements Controller {
 	}
 	
 	/**
-	 * ¼öÁ¤ÇÏ±â 
+	 * ìˆ˜ì •í•˜ê¸° 
 	 * */
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String modelNum =  request.getParameter("modelNum");
@@ -127,7 +127,7 @@ public class ElectronicsController implements Controller {
 		
 		elecService.update(electronics);
 		
-		//»ó¼¼º¸±âÆäÀÌÁö·Î ÀÌµ¿
+		//ìƒì„¸ë³´ê¸°í˜ì´ì§€ë¡œ ì´ë™
 		Electronics dbElec = elecService.selectByModelnum(modelNum, false);
 		request.setAttribute("elec", dbElec);
 		
@@ -135,7 +135,7 @@ public class ElectronicsController implements Controller {
 	}
 	
 	/**
-	 * »èÁ¦ÇÏ±â
+	 * ì‚­ì œí•˜ê¸°
 	 * */
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String modelNum  = request.getParameter("modelNum");

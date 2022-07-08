@@ -18,13 +18,13 @@ public class ElectronicsDAOImpl implements ElectronicsDAO {
     private Properties proFile  = new Properties();
 	
     /**
-     * dbQuery.properties·ÎµùÇØ¼­ Properties°´Ã¼¿¡ ÀúÀå!!!
+     * dbQuery.propertiesë¡œë”©í•´ì„œ Propertiesê°ì²´ì— ì €ì¥!!!
      * */
 	public ElectronicsDAOImpl() {
 		try {
 			//proFile.load(new FileInputStream("src/~~~"));
 			
-			//ÇöÀç ÇÁ·ÎÁ§Æ®°¡ ·±Å¸ÀÓ(½ÇÇà)µÉ¶§, Áï ¼­¹ö¿¡¼­ ½ÇÇàµÉ¶§ classesÆú´õÀÇ À§Ä¡¸¦ µ¿ÀûÀ¸·Î °¡Á®¿Í¼­ °æ·Î¸¦ ¼³Á¤ÇØ¾ßÇÑ´Ù.
+			//í˜„ì¬ í”„ë¡œì íŠ¸ê°€ ëŸ°íƒ€ì„(ì‹¤í–‰)ë ë•Œ, ì¦‰ ì„œë²„ì—ì„œ ì‹¤í–‰ë ë•Œ classesí´ë”ì˜ ìœ„ì¹˜ë¥¼ ë™ì ìœ¼ë¡œ ê°€ì ¸ì™€ì„œ ê²½ë¡œë¥¼ ì„¤ì •í•´ì•¼í•œë‹¤.
 			
 			proFile.load( getClass().getClassLoader().getResourceAsStream("dbQuery.properties") );
 			String value = proFile.getProperty("elec.select");
@@ -41,6 +41,7 @@ public class ElectronicsDAOImpl implements ElectronicsDAO {
 		ResultSet rs=null;
 		
 		List<Electronics> elecList = new ArrayList<Electronics>();
+		
 		String sql = proFile.getProperty("elec.select");
 		
 		try {
@@ -73,19 +74,19 @@ public class ElectronicsDAOImpl implements ElectronicsDAO {
 		String sql = proFile.getProperty("query.pagingSelect"); //where  rnum>=? and rnum <=? 
 	
 		try {
-			//ÀüÃ¼·¹ÄÚµå ¼ö¸¦ ±¸ÇØ¼­ ÃÑÆäÀÌÁö¼ö¸¦ ±¸ÇÏ°í db¿¡¼­ ²¨³» ¿Ã °Ô½Ã¹°ÀÇ °³¼ö¸¦ pagesize¸¸Å­ °¡Á®¿Â´Ù.(½ÃÀÛ ~ ³¡)
+			//ì „ì²´ë ˆì½”ë“œ ìˆ˜ë¥¼ êµ¬í•´ì„œ ì´í˜ì´ì§€ìˆ˜ë¥¼ êµ¬í•˜ê³  dbì—ì„œ êº¼ë‚´ ì˜¬ ê²Œì‹œë¬¼ì˜ ê°œìˆ˜ë¥¼ pagesizeë§Œí¼ ê°€ì ¸ì˜¨ë‹¤.(ì‹œì‘ ~ ë)
 			int totalCount = this.getTotalCount();
 			int totalPage = totalCount%PageCnt.getPagesize() ==0 ? totalCount/PageCnt.getPagesize() : (totalCount/PageCnt.getPagesize())+1;
 			
 			PageCnt pageCnt = new PageCnt();
-			pageCnt.setPageCnt(totalPage);//ÀüÃ¼ÆäÀÌÁö¼ö¸¦ ÀúÀåÇØÁØ´Ù.
-			pageCnt.setPageNo(pageNo); //»ç¿ëÀÚ°¡ Å¬¸¯ÇÑ page¹øÈ£¸¦ ¼³Á¤
+			pageCnt.setPageCnt(totalPage);//ì „ì²´í˜ì´ì§€ìˆ˜ë¥¼ ì €ì¥í•´ì¤€ë‹¤.
+			pageCnt.setPageNo(pageNo); //ì‚¬ìš©ìê°€ í´ë¦­í•œ pageë²ˆí˜¸ë¥¼ ì„¤ì •
 			
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			//?ÀÇ 2°³ÀÇ °ª ¼³Á¤
-			ps.setInt(1, (pageNo-1)*PageCnt.pagesize+1); //½ÃÀÛÁ¡¹øÈ£
-			ps.setInt(2, pageNo*PageCnt.pagesize); //³¡Á¡ ¹øÈ£ 
+			//?ì˜ 2ê°œì˜ ê°’ ì„¤ì •
+			ps.setInt(1, (pageNo-1)*PageCnt.pagesize+1); //ì‹œì‘ì ë²ˆí˜¸
+			ps.setInt(2, pageNo*PageCnt.pagesize); //ëì  ë²ˆí˜¸ 
 			
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -103,7 +104,7 @@ public class ElectronicsDAOImpl implements ElectronicsDAO {
 	
 	
 	/**
-	 * ÀüÃ¼·¹ÄÚµå¼ö °¡Á®¿À±â 
+	 * ì „ì²´ë ˆì½”ë“œìˆ˜ ê°€ì ¸ì˜¤ê¸° 
 	 * */
 	private int getTotalCount() throws SQLException {
 		Connection con=null;

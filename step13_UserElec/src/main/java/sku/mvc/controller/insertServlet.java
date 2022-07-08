@@ -30,6 +30,8 @@ public class insertServlet extends HttpServlet {
 		System.out.println(userId);
 		System.out.println(Pwd);
 		
+		String errormessage = null;
+		
 		UserIdDTO dbDTO = new UserIdDTO(userId, Pwd);
 	
 		UserDAO dao = new UserDAOImpl();
@@ -39,13 +41,14 @@ public class insertServlet extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			errormessage = e.toString();
 		}
 		
 		System.out.println(result);
 		
 		if (result == 0) {
 			// 에러 페이지
-			request.setAttribute("errMsg", "등록되지 않았습니다.");
+			request.setAttribute("errorMsg", errormessage);
 			request.getRequestDispatcher("error/error.jsp").forward(request, response);
 		} else {
 			response.setCharacterEncoding("UTF-8");

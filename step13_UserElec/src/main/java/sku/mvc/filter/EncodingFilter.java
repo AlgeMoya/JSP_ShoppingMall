@@ -14,7 +14,7 @@ import javax.servlet.http.HttpFilter;
 /**
  * Servlet Filter implementation class EncodingFilter
  * 
- * web.xml¹®¼­
+ * web.xmlë¬¸ì„œ
  *  <filter>
  *  
  *  </filter>
@@ -40,12 +40,12 @@ public class EncodingFilter  implements Filter {
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		//»çÀüÃ³¸®
+		//ì‚¬ì „ì²˜ë¦¬
 		request.setCharacterEncoding(encoding);
 		
 		chain.doFilter(request, response);
 		
-		//»çÈÄÃ³¸® 
+		//ì‚¬í›„ì²˜ë¦¬ 
 		
 		
 	}

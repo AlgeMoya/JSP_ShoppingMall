@@ -17,25 +17,25 @@ public class DownLoadServlet extends HttpServlet {
 
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. ³Ñ¾î¿À´Â ÆÄÀÏÀÇ ÀÌ¸§À» ¹Ş±â
+		//1. ë„˜ì–´ì˜¤ëŠ” íŒŒì¼ì˜ ì´ë¦„ì„ ë°›ê¸°
 		String fName = request.getParameter("fileName");
 		
 		
-		//2. ÀúÀåÆú´õÀÇ ½ÇÁ¦ °æ·Î¸¦ ¾ò¾î¿À±â
+		//2. ì €ì¥í´ë”ì˜ ì‹¤ì œ ê²½ë¡œë¥¼ ì–»ì–´ì˜¤ê¸°
 		String saveDir=request.getServletContext().getRealPath("/save");
-		File file = new File(saveDir, fName); //´Ù¿î·ÎµåÇÒ ÆÄÀÏ°´Ã¼ »ı¼º
+		File file = new File(saveDir, fName); //ë‹¤ìš´ë¡œë“œí•  íŒŒì¼ê°ì²´ ìƒì„±
 		
-		//ºÎ°¡ÀûÀÎ ¿É¼Ç!!!
-				//¿äÃ»µÈ ÆÄÀÏÀÇ mimeTypeÀ» ¼³Á¤ÇÑ´Ù(¹®¼­ÀÇ ÇüÅÂ¼³Á¤)
+		//ë¶€ê°€ì ì¸ ì˜µì…˜!!!
+				//ìš”ì²­ëœ íŒŒì¼ì˜ mimeTypeì„ ì„¤ì •í•œë‹¤(ë¬¸ì„œì˜ í˜•íƒœì„¤ì •)
 		String mimeType = getServletContext().getMimeType(file.toString());
 		System.out.println("mimeType : " + mimeType);
 		
-		if(mimeType==null){//¹®¼­ÀÇ ÇüÅÂ¸¦ ¾Ë¼ö ¾ø´Ù¸é 
+		if(mimeType==null){//ë¬¸ì„œì˜ í˜•íƒœë¥¼ ì•Œìˆ˜ ì—†ë‹¤ë©´ 
 			response.setContentType("application/octet-stream");
 		}
 		
-		//ºê¶ó¿ìÁ® º° ÆÄÀÏÀÌ¸§¿¡´ëÇÑ ÇÑ±ÛÀÎÄÚµù¼³Á¤
-		if (request.getHeader("user-agent").indexOf("Trident") == -1) {// IE°¡ ¾Æ´Ñ°æ¿ì
+		//ë¸Œë¼ìš°ì ¸ ë³„ íŒŒì¼ì´ë¦„ì—ëŒ€í•œ í•œê¸€ì¸ì½”ë”©ì„¤ì •
+		if (request.getHeader("user-agent").indexOf("Trident") == -1) {// IEê°€ ì•„ë‹Œê²½ìš°
 			System.out.println(1);
 			fName = new String(file.getName().getBytes("UTF-8"), "8859_1");
 		} else {
@@ -43,15 +43,15 @@ public class DownLoadServlet extends HttpServlet {
 			fName = new String(file.getName().getBytes("euc-kr"), "8859_1");
 		}
 		
-		//ºê¶ó¿ìÁ®°¡ ÇØ¼®ÇÒ¼ö ÀÖ´Â ÆÄÀÏÀ» ÇØ¼®ÇÏÁö ¾Ê°í ´Ù¿î·Îµå!!!
+		//ë¸Œë¼ìš°ì ¸ê°€ í•´ì„í• ìˆ˜ ìˆëŠ” íŒŒì¼ì„ í•´ì„í•˜ì§€ ì•Šê³  ë‹¤ìš´ë¡œë“œ!!!
 		response.setHeader("Content-Disposition", "attachment;filename=\""+ fName + "\";");
 								
 		
-		//3. Æú´õ¿¡¼­ ÆÄÀÏÀÌ¸§¿¡ ÇØ´çÇÏ´Â ÆÄÀÏÀ» ÀĞ¾î¼­ 
-		//Å¬¶óÀÌ¾ğÆ® ºê¶ó¿ìÁ®¿¡¼­ ´Ù¿î·Îµå(Ãâ·Â=¾²±â)
+		//3. í´ë”ì—ì„œ íŒŒì¼ì´ë¦„ì— í•´ë‹¹í•˜ëŠ” íŒŒì¼ì„ ì½ì–´ì„œ 
+		//í´ë¼ì´ì–¸íŠ¸ ë¸Œë¼ìš°ì ¸ì—ì„œ ë‹¤ìš´ë¡œë“œ(ì¶œë ¥=ì“°ê¸°)
 
 		FileInputStream  fi = new FileInputStream(file);
-		ServletOutputStream so = response.getOutputStream();//Å¬¶óÀÌ¾ğÆ®ÂÊÀ¸·Î ³»·Áº¸³¾(´Ù¿î·Îµå) Ãâ·Â(ÀúÀå) ÁØºñ
+		ServletOutputStream so = response.getOutputStream();//í´ë¼ì´ì–¸íŠ¸ìª½ìœ¼ë¡œ ë‚´ë ¤ë³´ë‚¼(ë‹¤ìš´ë¡œë“œ) ì¶œë ¥(ì €ì¥) ì¤€ë¹„
 		
 		byte b [] = new byte [1024];
 	   
@@ -63,9 +63,7 @@ public class DownLoadServlet extends HttpServlet {
 		so.flush();
 		fi.close();
 		so.close();
-		
 	}
-
 }
 
 

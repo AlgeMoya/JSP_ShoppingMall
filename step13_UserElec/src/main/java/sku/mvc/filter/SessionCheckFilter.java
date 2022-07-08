@@ -19,23 +19,23 @@ import javax.servlet.http.HttpSession;
 public class SessionCheckFilter  implements Filter {
     
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		//»çÀüÃ³¸® : ÀÎÁõµÈ »ç¿ëÀÚ ÀÎÁö¸¦ Ã¼Å©ÇÑ´Ù. 
+		//ì‚¬ì „ì²˜ë¦¬ : ì¸ì¦ëœ ì‚¬ìš©ì ì¸ì§€ë¥¼ ì²´í¬í•œë‹¤. 
 		String key = request.getParameter("key");
 		if(key==null || key.equals("elec")) {
-			//ElecÁ¢±ÙÇÑ´Ù.
+			//Elecì ‘ê·¼í•œë‹¤.
 			HttpServletRequest req = (HttpServletRequest)request;
 			HttpSession session = req.getSession();
 			if(session.getAttribute("loginUser") ==null) {
-				//ÀÎÁõ¾ÈµÇ¾ú´Ù!!
-				req.setAttribute("errorMsg", "·Î±×ÀÎÇÏ°í ÀÌ¿ëÇØÁÖ¼¼¿ä.^^");
+				//ì¸ì¦ì•ˆë˜ì—ˆë‹¤!!
+				req.setAttribute("errorMsg", "ë¡œê·¸ì¸í•˜ê³  ì´ìš©í•´ì£¼ì„¸ìš”.^^");
 				req.getRequestDispatcher("error/error.jsp").forward(request, response);
-				return;//¸Ş¼Òµå¸¦ ºüÁ®³ª°¡¶ó.
+				return;//ë©”ì†Œë“œë¥¼ ë¹ ì ¸ë‚˜ê°€ë¼.
 			}
 		}
 		chain.doFilter(request, response);
 		
 		
-		//»çÈÄÃ³¸®
+		//ì‚¬í›„ì²˜ë¦¬
 	}
 
 	

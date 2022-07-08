@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *  »ç¿ëÀÚÀÇ ¸ğµç ¿äÃ»À» Ã³¸®ÇÒ ÁøÀÔÁ¡ ControllerÀÌ´Ù(FrontControllerÀÇ ¿ªÇÒÇÑ´Ù)
+ *  ì‚¬ìš©ìì˜ ëª¨ë“  ìš”ì²­ì„ ì²˜ë¦¬í•  ì§„ì…ì  Controllerì´ë‹¤(FrontControllerì˜ ì—­í• í•œë‹¤)
  */
 @WebServlet(urlPatterns = "/front" , loadOnStartup = 1)
 public class DispatcherServlet extends HttpServlet {
@@ -65,7 +65,7 @@ public class DispatcherServlet extends HttpServlet {
 			request.setAttribute("errorMsg", e.getCause().getMessage());
 			request.getRequestDispatcher("error/error.jsp").forward(request, response);
 		}
-	}//service ¸Ş¼Òµå ³¡ 
+	}//service ë©”ì†Œë“œ ë 
 
 }
 
