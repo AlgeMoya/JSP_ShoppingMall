@@ -48,9 +48,10 @@ public class HandlerMappingListener implements ServletContextListener {
         		removed.add(booktop);   		
         	}
         }
+        
         bestseller.removeAll(removed);
         
-
+       System.out.println("bookList = " + bookList);
         
         ServletContext application = e.getServletContext();
 
@@ -80,6 +81,7 @@ public class HandlerMappingListener implements ServletContextListener {
 			ex.printStackTrace();
 		}
         
+        System.out.println("bestseller = " + bestseller);
         //모든 영역에서 map을 사용할수 있도록 ServletContext영역에 저장한다.
         application.setAttribute("map", map);
         application.setAttribute("clzMap", clzMap);

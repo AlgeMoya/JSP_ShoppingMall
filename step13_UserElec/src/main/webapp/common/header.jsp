@@ -61,6 +61,7 @@ background : #9999FF;}
 text-align:center;
 float:right;}
 #menu li.login{float:right;}
+.dep{position:relative; z-index:10;}
 </style>
 
 </head>
@@ -70,7 +71,7 @@ float:right;}
 		<li class="first screen"><a href="${pageContext.request.contextPath}/index.jsp">첫 화면</a></li>
 		<li class="book"><a href="#">책 분류</a>
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/content/print000.jsp">총류</a></li>
+				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">총류</a></li>
 				<li><a href="${pageContext.request.contextPath}/">철학</a></li>
 				<li><a href="${pageContext.request.contextPath}/">종교</a></li>
 				<li><a href="${pageContext.request.contextPath}/">사회과학</a></li>

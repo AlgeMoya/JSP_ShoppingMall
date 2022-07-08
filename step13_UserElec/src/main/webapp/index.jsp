@@ -21,6 +21,7 @@
 <title>Team5</title>
 </head>
 <body>
+
  <blockquote>
  <h1>이번 주 인기 서적</h1>
  <table width = "100%" border="3">
@@ -34,7 +35,7 @@
  
   <c:forEach items="${applicationScope.bestseller}" var="booklist" >
   	<tr>
-    	<td><img src="images/${booklist.isbn}.PNG" width="100", height="50" alt="불편한 편의점"></td>
+    	<td><img src="${path}/images/${booklist.isbn}.PNG" width="100", height="50"></td>
     	<td>${booklist.bookName}</td>
     	<td>${booklist.bookType}</td>
    		<td>${booklist.wirter}</td>

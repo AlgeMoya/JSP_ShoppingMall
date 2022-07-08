@@ -8,5 +8,7 @@ public class AuthenticationException extends Exception { //체크예외!!!
 	public AuthenticationException(String message) {
 		super(message);
 	}
+	
+	
 
 }

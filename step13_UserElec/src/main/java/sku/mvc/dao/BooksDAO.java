@@ -38,7 +38,7 @@ public class BooksDAO {
 
 				bookList.add(book);
 			}
-			
+			System.out.println("bookList --- = " + bookList);
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
