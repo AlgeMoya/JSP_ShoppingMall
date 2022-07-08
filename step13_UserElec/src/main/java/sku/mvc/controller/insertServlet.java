@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import sku.mvc.dao.UserDAO;
 import sku.mvc.dao.UserDAOImpl;
 import sku.mvc.dto.UserIdDTO;
+import sku.mvc.exception.AuthenticationException;
 
 @WebServlet(urlPatterns = "/insert", loadOnStartup = 1)
 public class insertServlet extends HttpServlet {
@@ -41,14 +42,13 @@ public class insertServlet extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			errormessage = e.toString();
+		} catch (AuthenticationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		System.out.println(result);
 		
 		if (result == 0) {
 			// 에러 페이지
-			request.setAttribute("errorMsg", errormessage);
 			request.getRequestDispatcher("error/error.jsp").forward(request, response);
 		} else {
 			response.setCharacterEncoding("UTF-8");
@@ -61,7 +61,6 @@ public class insertServlet extends HttpServlet {
 		
 			// response.sendRedirect("index.jsp");
 		}
-		
 		
 	}
 

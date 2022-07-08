@@ -62,9 +62,15 @@ background : #9999FF;}
 .login {
 text-align:center;
 float:right;}
-
 </style>
 
+
+<script type="text/javascript">
+    function bookTypeSubmit(type){
+    	document.bookTypeForm.bookType.value=type;
+    	document.bookTypeForm.submit();
+    }
+  </script>
 </head>
 <body>
 <div id="menu">
@@ -72,15 +78,15 @@ float:right;}
 		<li class="first screen"><a href="${pageContext.request.contextPath}/index.jsp">첫 화면</a></li>
 		<li class="book"><a href="#">책 분류</a>
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">총류</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">철학</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">종교</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">사회과학</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">자연과학</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">기술과학</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">예술</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">문학</a></li>
-				<li><a href="${pageContext.request.contextPath}/BookContent/print000.jsp">역사</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('총류')">총류</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('철학')">철학</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('종교')">종교</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('사회과학')">사회과학</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('자연과학')">자연과학</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('기술과학')">기술과학</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('예술')">예술</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('문학')">문학</a></li>
+				<li><a href="#" onclick="bookTypeSubmit('역사')">역시</a></li>				
 			</ul>
 		</li>
 
@@ -108,6 +114,13 @@ float:right;}
 	</ul>
 </div>
 </head>
+
+
+<form action="${pageContext.request.contextPath}/front" method="post" name="bookTypeForm">
+  <input type="hidden" name="key" value="book"/>
+  <input type="hidden" name="methodName" value="selectByBookType"/>
+  <input type="hidden" name="bookType" />
+</form>
 <body>
 </body>
 </html>

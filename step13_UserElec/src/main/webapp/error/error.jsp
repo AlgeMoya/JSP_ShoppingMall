@@ -21,7 +21,7 @@
 		      <div class="col-lg-6  col-lg-offset-3">
 			<div class="btn-group btn-group-justified">
 				<a href="${pageContext.request.contextPath}/user/login.jsp" class="btn btn-primary">Login</a>
-				<a href="${pageContext.request.contextPath}" class="btn btn-success">Return Website</a>
+				<a href="${pageContext.request.contextPath}/index.jsp" class="btn btn-success">Return Website</a>
 				<a href="javascript:history.back()" class="btn btn-success">뒤로가기</a>
 			</div>
 

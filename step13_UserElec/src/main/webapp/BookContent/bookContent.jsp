@@ -1,33 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> 
     <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
-<h1> ${booklist.bookname} Ã¥ ¼Ò°³ ÆäÀÌÁö</h1>
+<h1> ${book.bookName} ì±… ì†Œê°œ í˜ì´ì§€</h1>
+ 
+<!--  request.setAttribute("book", selectedbook); -->
 <table width="100%" border="1" height="250">
 <tr>
-	<th rowspan="4"><img src="../images/ddd.jpg">Ã¥ Ç¥Áö</th>
-	<th>Ã¥ ¼Ò°³</th>
+	<th width="100" rowspan="4"><img src="images/${book.isbn}.PNG" alt="ë¶ˆí¸í•œ í¸ì˜ì "></th>
+	<th class="text-center">${book.bookName}</th>
 </tr>
 
 <tr>
-<td>Ã¥ Á¦¸ñ</td>
+<td class="text-center">${book.wirter}</td>
 </tr>
 
 <tr>
-<td>°¡°İ</td>
+<td class="text-center">${book.price} ì›</td>
 </tr>
 <tr>
-<td><button id ="btn" onclick="Buy();">±¸¸ÅÇÏ±â</button>
+<td class="text-center"><button id ="btn" onclick="Buy();" class="btn btn-primary">êµ¬ë§¤í•˜ê¸°</button>
 <script>
 function Buy(){
-	alert("±¸¸ÅµÇ¼Ì½À´Ï´Ù");
+	alert("êµ¬ë§¤ë˜ì…¨ìŠµë‹ˆë‹¤");
 }
 </script>
 </td>
@@ -37,7 +38,7 @@ function Buy(){
 
 <table width="100%" border="1" height="180">
 <tr>
-<td> Ã¥ ³»¿ë</td>
+<td class="text-center">${book.description}</td>
 </tr>
 </table>
 </body>

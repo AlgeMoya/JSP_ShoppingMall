@@ -19,12 +19,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Team5</title>
+<script type="text/javascript">
+    function viewBookDesc(bookname){
+     	document.f.bookName.value=bookname;
+    	document.f.submit();
+    }
+  </script>
 </head>
-
 <body>
  <blockquote>
  <h1>이번 주 인기 서적</h1>
- <table style ="text-align:center"width = "100%" border="3">
+ <table style ="text-align:center" width = "100%" border="3">
  <tr>
  <th>책표지</th>
  <th>책이름</th>
@@ -35,18 +40,22 @@
  
   <c:forEach items="${applicationScope.bestseller}" var="booklist" >
   	<tr>
-    	<td align=center><img src="${path}/images/${booklist.isbn}.PNG" width="100", height="50"></td>
+    	<td align=center><img src="images/${booklist.isbn}.PNG" width="100", height="100" alt="불편한 편의점"></td>
     	<td align=center>${booklist.bookName}</td>
     	<td align=center>${booklist.bookType}</td>
    		<td align=center>${booklist.wirter}</td>
-	    <td align=center><button style="background-color : #58ACFA">
-	    <a href="${pageContext.request.contextPath}/BookContent/bookContent.jsp">상세정보</a></button></td>
+	    <td align=center><button style="background-color : #58ACFA" onclick="viewBookDesc('${booklist.bookName}')">상세정보</button></td>
 	</tr>
      <!-- <input type="radio" name="nation" value="${booklist.isbn}" /> ${booklist.bookName}  -->
   </c:forEach>
 </table>
   
 </blockquote>
+<form action="${pageContext.request.contextPath}/front" method="post" name="f">
+  <input type="hidden" name="key" value="book"/> <!-- actionMapping.properties의 sku.mvc.controller.BookController -->
+  <input type="hidden" name="methodName" value="viewBookDesc"/> <!-- 메소드 호출 -->
+  <input type="hidden" name="bookName" />
+</form>
 </body>
 </html>
  <jsp:include page="common/footer.jsp"/>

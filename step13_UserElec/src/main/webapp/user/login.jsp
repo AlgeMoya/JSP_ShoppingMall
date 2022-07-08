@@ -10,29 +10,30 @@ z-index:150;}
 
 <c:choose>
 	<c:when test="${empty loginUser}">
-		<form id = login class="form-horizontal" method="post" action="${pageContext.request.contextPath}/front">
+		<form id=login class="form-horizontal" method="post" action="${pageContext.request.contextPath}/front">
 			<input type="hidden" name="key" value = "user" /> <!-- Controller를 찾는 정보 -->
 			<input type="hidden" name="methodName" value = "login" />  <!-- 메소드이름 -->
 			<fieldset>
-				<legend>Login</legend>
-				<div class="form-group" id="login">
-					<label for="userId" class="col-lg-2 control-label">User Id</label>
+				<legend>로그인</legend>
+				<div class="form-group" id=login>
+					<label for="userId" class="col-lg-2 control-label">ID</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="userId" name="userId"
-							placeholder="userId">
+							placeholder="ID 입력">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="pwd" class="col-lg-2 control-label">Password</label>
+					<label for="pwd" class="col-lg-2 control-label">비밀번호</label>
 					<div class="col-lg-10">
 						<input type="password" class="form-control" id="pwd" name="pwd"
-							placeholder="password">
+							placeholder="비밀번호 입력">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
-						<button class="btn btn-default">Cancel</button>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button class="btn btn-default">취소</button>
+						<button type="submit" class="btn btn-primary">로그인</button>
+					
 					</div>
 				</div>
 			</fieldset>

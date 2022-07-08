@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import sku.mvc.dto.UserDTO;
 import sku.mvc.dto.UserIdDTO;
+import sku.mvc.exception.AuthenticationException;
 import sku.mvc.util.DbUtil;
 
 public class UserDAOImpl implements UserDAO {
@@ -36,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 		return dbDTO;
 	}
 	
-	public int insert(UserIdDTO userIdDTO) throws SQLException {
+	public int insert(UserIdDTO userIdDTO) throws SQLException, AuthenticationException {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -53,8 +54,11 @@ public class UserDAOImpl implements UserDAO {
 			ps.setString(2, userIdDTO.getPassWord());
 			
 			result = ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new AuthenticationException("정보를 다시 확인해주세요.");
+			
 		} finally {
 			DbUtil.dbClose(ps, con);
 		}

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import sku.mvc.dto.UserDTO;
 import sku.mvc.dto.UserIdDTO;
+import sku.mvc.exception.AuthenticationException;
 
 public interface UserDAO {
   /**
@@ -12,5 +13,5 @@ public interface UserDAO {
    * */
 	UserIdDTO loginCheck(UserIdDTO userIdDTO)throws SQLException;
 	
-	int insert(UserIdDTO userIdDTO)throws SQLException;
+	int insert(UserIdDTO userIdDTO)throws SQLException, AuthenticationException;
 }

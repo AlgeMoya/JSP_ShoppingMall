@@ -1,6 +1,9 @@
 package sku.mvc.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,11 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import sku.mvc.dao.BooksDAO;
+import sku.mvc.dao.UserDAO;
+import sku.mvc.dao.UserDAOImpl;
+import sku.mvc.dto.BookTable;
 import sku.mvc.dto.Electronics;
+import sku.mvc.dto.UserIdDTO;
+import sku.mvc.exception.AuthenticationException;
 import sku.mvc.service.ElectronicsService;
 import sku.mvc.service.ElectronicsServiceImpl;
 
-public class ElectronicsController implements Controller {
+public class BookController implements Controller {
 	private ElectronicsService elecService = new ElectronicsServiceImpl();
 
 	@Override
@@ -27,7 +36,6 @@ public class ElectronicsController implements Controller {
 	/**
 	 *  전체검색하기 
 	 * */
-	
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response) throws Exception{
 	    //서비스호출 
 		/*List<Electronics> elecList = elecService.selectAll();*/
@@ -150,17 +158,60 @@ public class ElectronicsController implements Controller {
 	
 	/**
 	 * bookType에 해당하는 책 정보 검색하기 
-	 * 
 	 * */
 	public ModelAndView selectByBookType(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// 전송된 데이터 받기 - 분류
 		String bookType = request.getParameter("bookType");
-		System.out.println("bookeTyoe = "  + bookType);
+		System.out.println("bookType = "  + bookType);
 		
+		BooksDAO booksdao = new BooksDAO();
+        List<BookTable> bookListbydept = new ArrayList<BookTable>();
+        try {
+			bookListbydept = booksdao.selectbyDepartment(bookType);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        System.out.println("책 가져오는 중");
+        
+        for (BookTable booktop : bookListbydept) {
+        	System.out.println(booktop.getIsbn());
+        }
+        
+	    request.setAttribute("list", bookListbydept);
+	    request.setAttribute("bookType", bookType);
+	    
+	    // 여기에 라예진 만든 jsp 입력
+		return new ModelAndView("BookContent/print000.jsp");
+	}
+	
+	
+	/*
+	 * 책 상세정보 페이지 출력
+	 */
+	public ModelAndView viewBookDesc(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// 전송된 데이터 받기 - 분류
+		String bookName = request.getParameter("bookName");
+		System.out.println("bookName = "  + bookName);
 		
+		BooksDAO booksdao = new BooksDAO();
+		BookTable selectedbook = new BookTable();
 		
+		selectedbook = booksdao.selectbyName(bookName);
 		
-		return new ModelAndView("elec/test.jsp");
+		System.out.println("책 가져오는 중");
 		
+		if(selectedbook == null) {
+			throw new SQLException("상세보기에 오류가 발생했습니다..");
+		}
+		
+		System.out.println(selectedbook.getIsbn());
+		
+		request.setAttribute("book", selectedbook);
+		
+		// 여기에 라예진 만든 jsp 입력
+		return new ModelAndView("BookContent/bookContent.jsp");
 	}
 	
 }

@@ -33,7 +33,7 @@ public class DispatcherServlet extends HttpServlet {
 	}
    
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// System.out.println("1111111111111");
 		String key = request.getParameter("key");
 		String methodName = request.getParameter("methodName");
 		
@@ -60,12 +60,12 @@ public class DispatcherServlet extends HttpServlet {
 				request.getRequestDispatcher(mv.getViewName()).forward(request, response);
 			}
 			
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMsg", e.getCause().getMessage());
 			request.getRequestDispatcher("error/error.jsp").forward(request, response);
 		}
-	}//service 메소드 끝 
+	} // service 메소드 끝
 
 }
 

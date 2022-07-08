@@ -1,39 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <jsp:include page="../common/header.jsp"/>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- ÃÑ·ù ¸ñ·Ï -->
+<!-- ì´ë¥˜ ëª©ë¡ -->
+<script type="text/javascript">
+    function viewBookDesc(bookname){
+     	document.g.bookName.value=bookname;
+    	document.g.submit();
+    }
+  </script>
 </head>
 <body>
 <blockquote>
- <h1>${booklist.booktype}ºĞ¾ß ÀÌ¹øÁÖ ÀÎ±â ¼­Àû</h1>
+ <h1>${bookType} ë¶„ì•¼ ì´ë²ˆì£¼ ì¸ê¸° ì„œì </h1>
  <table width = "100%" border="3">
  <tr>
- <th>Ã¥Ç¥Áö</th>
- <th>Ã¥ÀÌ¸§</th>
- <th>Ã¥ºĞ·ù</th>
- <th>ÀúÀÚ</th>
- <th>»ó¼¼Á¤º¸</th>
+ <th>ì±…í‘œì§€</th>
+ <th>ì±…ì´ë¦„</th>
+ <th>ì±…ë¶„ë¥˜</th>
+ <th>ì €ì</th>
+ <th>ìƒì„¸ì •ë³´</th>
  </tr>
- 
-  <c:forEach items="${applicationScope.bestseller}" var="booklist" >
+ <!--  request.setAttribute("list", bookList);  -->
+  <c:forEach items="${list}" var="booklist" >
+  <p></p>
   	<tr>
-    	<td><img src="${path}/images/${booklist.isbn}.PNG" width="100", height="50"></td>
+    	<td><img src="${path}/images/${booklist.isbn}.PNG" width="100" height="50"></td>
     	<td>${booklist.bookName}</td>
     	<td>${booklist.bookType}</td>
    		<td>${booklist.wirter}</td>
-	    <td><td align=center><button style="background-color : #58ACFA">
-	    <a href="${pageContext.request.contextPath}/BookContent/bookContent.jsp">»ó¼¼Á¤º¸</a></button></td></td>
+		<td align=center><button style="background-color : #58ACFA" onclick="viewBookDesc('${booklist.bookName}')">ìƒì„¸ì •ë³´</button></td>
 	</tr>
      <!-- <input type="radio" name="nation" value="${booklist.isbn}" /> ${booklist.bookName}  -->
   </c:forEach>
 </table>
-  
+
 </blockquote>
 </body>
+<form action="${pageContext.request.contextPath}/front" method="post" name="g">
+  <input type="hidden" name="key" value="book"/> <!-- actionMapping.propertiesì˜ sku.mvc.controller.BookController -->
+  <input type="hidden" name="methodName" value="viewBookDesc"/> <!-- ë©”ì†Œë“œ í˜¸ì¶œ -->
+  <input type="hidden" name="bookName" />
+</form>
 </html>
  <jsp:include page="../common/footer.jsp"/>
