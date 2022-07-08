@@ -27,7 +27,7 @@
     	<td>${booklist.bookType}</td>
    		<td>${booklist.wirter}</td>
 	    <td><td align=center><button style="background-color : #58ACFA">
-	    <a href="bookContent.jsp">상세정보</a></button></td></td>
+	    <a href="${pageContext.request.contextPath}/BookContent/bookContent.jsp">상세정보</a></button></td></td>
 	</tr>
      <!-- <input type="radio" name="nation" value="${booklist.isbn}" /> ${booklist.bookName}  -->
   </c:forEach>
