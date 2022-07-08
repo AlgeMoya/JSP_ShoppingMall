@@ -5,7 +5,6 @@ public class UserDTO {
    private String pwd;
    private String name;
    
-   
    public UserDTO() {}
    public UserDTO(String userId, String pwd) {
 		super();

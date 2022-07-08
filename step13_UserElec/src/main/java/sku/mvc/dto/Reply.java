@@ -1,10 +1,10 @@
 package sku.mvc.dto;
 
 public class Reply {
-	private int replyNum; //±Û¹øÈ£
-	private String replyContent; //³»¿ë
-	private String replyRegDate;//µî·ÏÀÏ
-	private String parentModelNum;//ºÎ¸ğ±Û¹øÈ£ 
+	private int replyNum; //ê¸€ë²ˆí˜¸
+	private String replyContent; //ë‚´ìš©
+	private String replyRegDate;//ë“±ë¡ì¼
+	private String parentModelNum;//ë¶€ëª¨ê¸€ë²ˆí˜¸ 
 	
     public Reply() {}
 	public Reply(int replyNum, String replyContent, String replyRegDate, String parentModelNum) {

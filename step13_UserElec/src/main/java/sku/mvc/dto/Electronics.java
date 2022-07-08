@@ -5,17 +5,17 @@ import java.util.List;
 ;
 
 public class Electronics {
-	private String modelNum; //db���� model_num
+	private String modelNum; //db에는 model_num
 	private String modelName ;
-	private int price ;
-	private String description; 
+	private int price ; // 가격
+	private String description; // 설명
 	private String password ;
-	private String writeday; 
-	private int readnum ;
-	private String  fname; 
-	private int  fsize;
+	private String writeday; // 등록일
+	private int readnum ; // 조회수
+	private String  fname; // 파일 이름 
+	private int  fsize; // 파일 용량
 	
-	//1 : �� ����
+	//1 : 다 관계
 	private List<Reply> repliesList;
 	
 	
